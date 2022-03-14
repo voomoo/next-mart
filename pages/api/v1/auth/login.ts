@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { ResponseData } from "../../../../dataTypes/types";
 import excuteQuery from "../../../../lib/db";
 import crypto from "crypto";
-import { v4 } from "uuid";
 import jwt from "jsonwebtoken";
 
 export default async function handler(

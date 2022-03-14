@@ -14,15 +14,6 @@ export default async function handler(
     //receiving data from the body
     const { name, email, phone, gender, address, password, role } = req.body;
 
-    if (role !== ("admin" || "buyer" || "seller")) {
-      return res
-        .status(422)
-        .json({
-          success: false,
-          data: "Role can only be 'admin', 'seller' or 'buyer'",
-        });
-    }
-
     //checking if required data is available
     if (!(name && email && password)) {
       return res
@@ -48,7 +39,7 @@ export default async function handler(
       address,
       hash,
       salt,
-      userRole: role === undefined ? "buyer" : role,
+      userRole: role === undefined ? "customer" : role,
     };
 
     try {
