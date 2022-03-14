@@ -25,13 +25,11 @@ export default async function handler(
         name,
         salt
     };
-    console.log({user})
     try {
       const result: any = await excuteQuery({
         query: "INSERT INTO users (id, email, password, name, salt) VALUES(?, ?, ?, ?, ?)",
         values: [user.id, user.email, user.hash, user.name, user.salt],
       });
-      console.log({ result: result });
     } catch (error) {
       console.log({ error });
     }

@@ -28,7 +28,6 @@ export default async function handler(
         values: [email],
       });
 
-      console.log(typeof user[0].salt);
 
       const userExists = user[0].length !== 0;
 
@@ -39,7 +38,14 @@ export default async function handler(
           .toString("hex");
         if (hash === user[0].password) {
           const token = jwt.sign(
-            { id: user[0].id, email },
+            {
+              id:         user[0].id,
+              email:      user[0].email,
+              phone:      user[0].phone,
+              gender:     user[0].gender,
+              points:     user[0].points,
+              firstLogin: user[0].first_login,
+            },
             process.env.TOKEN_KEY as string,
             {
               expiresIn: "2h",
