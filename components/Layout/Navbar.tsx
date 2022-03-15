@@ -3,7 +3,6 @@ import { Button, Container, Dropdown, Grid, Input } from "semantic-ui-react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import styles from "../../styles/layout/navbar.module.css";
 import { AuthModalPropsType } from "../../dataTypes/propsTypes";
-import jwtDecode from "jwt-decode";
 
 const Navbar: NextPage<AuthModalPropsType> = ({
   authModalOpen,
@@ -14,7 +13,7 @@ const Navbar: NextPage<AuthModalPropsType> = ({
     { key: "delete", icon: "delete", text: "Remove Post", value: "delete" },
     { key: "hide", icon: "hide", text: "Hide Post", value: "hide" },
   ];
-  let tokenExists = localStorage.getItem("token") !== null;
+
   return (
     <nav className={styles.navbar}>
       <Container>
