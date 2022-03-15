@@ -1,16 +1,20 @@
 import { NextPage } from "next";
-import { Button, Container, Grid, Input } from "semantic-ui-react";
+import { Button, Container, Dropdown, Grid, Input } from "semantic-ui-react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import styles from "../../styles/layout/navbar.module.css";
-import { Dispatch, SetStateAction } from "react";
+import { AuthModalPropsType } from "../../dataTypes/propsTypes";
+import jwtDecode from "jwt-decode";
 
-
-type AuthModalPropsType = {
-    authModalOpen: boolean;
-    setAuthModalOpen: Dispatch<SetStateAction<boolean>>;
-  }
-
-const Navbar: NextPage<AuthModalPropsType> = ({authModalOpen, setAuthModalOpen}) => {
+const Navbar: NextPage<AuthModalPropsType> = ({
+  authModalOpen,
+  setAuthModalOpen,
+}) => {
+  const options = [
+    { key: "edit", icon: "edit", text: "Edit Post", value: "edit" },
+    { key: "delete", icon: "delete", text: "Remove Post", value: "delete" },
+    { key: "hide", icon: "hide", text: "Hide Post", value: "hide" },
+  ];
+  let tokenExists = localStorage.getItem("token") !== null;
   return (
     <nav className={styles.navbar}>
       <Container>
@@ -28,7 +32,13 @@ const Navbar: NextPage<AuthModalPropsType> = ({authModalOpen, setAuthModalOpen})
             />
           </Grid.Column>
           <Grid.Column width={4}>
-            <Button onClick={() => setAuthModalOpen(!authModalOpen)} floated="right" color="red">Sign in</Button>
+            <Button
+              onClick={() => setAuthModalOpen(!authModalOpen)}
+              floated="right"
+              color="red"
+            >
+              Sign in
+            </Button>
           </Grid.Column>
         </Grid>
       </Container>

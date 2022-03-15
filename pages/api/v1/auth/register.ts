@@ -35,7 +35,7 @@ export default async function handler(
       name,
       email,
       phone,
-      gender,
+      gender: "male",
       address,
       hash,
       salt,
@@ -53,6 +53,7 @@ export default async function handler(
 
       if (!userExists) {
         //if user does not exist add
+        console.log(user)
         const result = await excuteQuery({
           query:
             "INSERT INTO users (id, name, email, phone, gender, address, password, salt, role) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -77,6 +78,7 @@ export default async function handler(
         const token = jwt.sign(
           {
             id:         currentUser[0].id,
+            name:       currentUser[0].name,
             email:      currentUser[0].email,
             phone:      currentUser[0].phone,
             gender:     currentUser[0].gender,
@@ -100,7 +102,7 @@ export default async function handler(
         });
         res.status(201).json({ success: true, data: userObject });
       } else {
-        res.status(409).json({ success: false, data: "Email Already Exists" });
+        res.status(200).json({ success: false, data: "Email Already Exists" });
       }
     } catch (error) {
       console.log({ error });

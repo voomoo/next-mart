@@ -16,7 +16,7 @@ export default async function handler(
     //checking if required data is available
     if (!(email && password)) {
       return res
-        .status(422)
+        .status(200)
         .json({ success: false, data: "Email & Password is required" });
     }
 
@@ -27,8 +27,8 @@ export default async function handler(
         values: [email],
       });
 
-
-      const userExists = user[0].length !== 0;
+      console.log(user)
+      const userExists = user.length !== 0;
 
       if (userExists) {
         //hasing the password
@@ -39,6 +39,7 @@ export default async function handler(
           const token = jwt.sign(
             {
               id:         user[0].id,
+              name:       user[0].name,
               email:      user[0].email,
               phone:      user[0].phone,
               gender:     user[0].gender,
@@ -57,10 +58,10 @@ export default async function handler(
           });
           res.status(201).json({ success: true, data: { token: token } });
         } else {
-          res.status(404).json({ success: false, data: "User not found" });
+          res.status(200).json({ success: false, data: "Check username or password" });
         }
       } else {
-        res.status(409).json({ success: false, data: "Email does not Exists" });
+        res.status(200).json({ success: false, data: "Email does not Exists" });
       }
     } catch (error) {
       console.log({ error });
