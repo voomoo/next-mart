@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@devexpress/dx-react-core": "^3.0.2",
+    "@devexpress/dx-react-grid": "^3.0.2",
+    "@devexpress/dx-react-grid-bootstrap4": "^3.0.2",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/uuid": "^8.3.4",
     "axios": "^0.26.1",
     "crypto": "^1.0.1",
+    "formik": "^2.2.9",
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
@@ -25,7 +29,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2",
     "serverless-mysql": "^1.5.4",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
